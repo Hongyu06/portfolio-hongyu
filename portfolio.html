@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Hongyu Lin</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <div class="navbar">
+        <div class="brand">Hongyu Lin</div>
+        <nav>
+          <a href="#about" class="nav-link" data-i18n="nav.about">About Me</a>
+          <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
+          <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+          <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+        </nav>
+        <div class="navbar-right">
+          <select
+            id="language-select"
+            class="lang-select"
+            aria-label="Seleccionar idioma"
+          >
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="section about-section">
+        <div class="about-left">
+          <div class="avatar-circle"> 
+          </div>
+          <ul class="social-list">
+            <li>
+              <a href="mailto:hola581303@gmail.com">
+                <span class="social-icon">
+                  <img src="img/Gmail.png" alt="Gmail" />
+                </span>
+                <span class="social-text">hola581303@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/Hongyu06"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class="social-icon">
+                  <img src="img/GitHub.png" alt="GitHub" />
+                </span>
+                <span class="social-text">@Hongyu06</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/hongyu-lin-b918b3355/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span class="social-icon">
+                  <img src="img/LinkedIn.png" alt="LinkedIn" />
+                </span>
+                <span class="social-text">Hongyu Lin</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="about-right">
+          <h1 data-i18n="about.name">Hongyu Lin</h1>
+          <h2 data-i18n="about.role">Programador</h2>
+          <p data-i18n="about.p1">
+            Soy un desarrollador apasionado por crear experiencias digitales
+            pulidas, intuitivas y con buen rendimiento. Me gusta combinar
+            diseño y código para que cada proyecto se sienta moderno y
+            cuidado en los detalles.
+          </p>
+          <p data-i18n="about.p2">
+            En este portfolio encontrarás algunos de los trabajos que he
+            realizado, desde páginas web hasta proyectos más técnicos.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills" class="section skills-section">
+        <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+        <div class="skills-field">
+          <div class="skill-bubble level-1" data-label="Unity">
+            <img src="img/unity.jpg" alt="Unity" />
+          </div>
+          <div class="skill-bubble level-2" data-label="C#">
+            <img src="img/Csharp.png" alt="C#" />
+          </div>
+          <div class="skill-bubble level-3" data-label="HTML">
+            <img src="img/HTML5.png" alt="HTML5" />
+          </div>
+          <div class="skill-bubble level-4" data-label="CSS">
+            <img src="img/CSS.png" alt="CSS" />
+          </div>
+          <div class="skill-bubble level-5" data-label="C++">
+            <img src="img/C++.svg" alt="C++" />
+          </div>
+          <div class="skill-bubble level-6" data-label="Java">
+            <img src="img/java.png" alt="Java" />
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects-section">
+        <h2 class="section-title" data-i18n="projects.title">Projects</h2>
+        <div class="projects-layout">
+          <div class="project-preview">
+            <div class="project-card" id="project-card">
+              <div class="project-card-inner">
+                <div class="project-card-face project-card-front">
+                  <img
+                    id="project-image"
+                    src="img/portfolio.png"
+                    alt="Portfolio personal de Hongyu Lin"
+                  />
+                  <span class="project-card-hint">Haz click para girar</span>
+                </div>
+                <div class="project-card-face project-card-back">
+                  <h3 id="project-title">Portfolio personal</h3>
+                  <p id="project-description">
+                    Portfolio web con diseño oscuro y animaciones, que muestra
+                    mis habilidades, proyectos y datos de contacto. Desarrollado
+                    con HTML, CSS y JavaScript puro, incluyendo selector de
+                    idioma y tarjetas interactivas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="project-list">
+            <h3 data-i18n="projects.listTitle">Mis proyectos</h3>
+            <ul id="project-items">
+              <li
+                class="project-item active"
+                data-title="Portfolio personal"
+                data-description="Portfolio web con diseño oscuro, animaciones y selector de idioma, construido con HTML, CSS y JavaScript puro."
+                data-image="img/portfolio.png"
+                data-tech="html,css,js"
+              >
+                <span class="project-name">Portfolio personal</span>
+                <span class="project-tech-icons">
+                  <span class="tech-pill">HTML</span>
+                  <span class="tech-pill">CSS</span>
+                  <span class="tech-pill">JS</span>
+                </span>
+              </li>
+              <li
+                class="project-item"
+                data-title="ValoWiki"
+                data-description="ValoWiki es una wiki no oficial de Valorant creada junto con mis compañeros, con páginas para agentes, skins y esports. Desarrollada con HTML, CSS y JavaScript."
+                data-image="img/ValoWiki.png"
+                data-tech="html,css,js"
+              >
+                <span class="project-name">ValoWiki</span>
+                <span class="project-tech-icons">
+                  <span class="tech-pill">HTML</span>
+                  <span class="tech-pill">CSS</span>
+                  <span class="tech-pill">JS</span>
+                  <a href="https://github.com/Itsdeusi06/ValoWiki" target="_blank" rel="noreferrer" class="github-link">
+                    <img src="img/GitHubWhite.png" alt="GitHub" class="github-icon" />
+                  </a>
+                </span>
+              </li>
+              <li
+                class="project-item"
+                data-title="Extension de Chrome"
+                data-description="Aquesta es una extensió de Chrome que permet a l'usuari parlar amb tota les persones que tinguin aquesta extensio."
+                data-image="img/extensioChrome.png"
+                data-tech="cpp"
+              >
+                <span class="project-name">Extension de Chrome</span>
+                <span class="project-tech-icons">
+                  <span class="tech-pill">JS</span>
+                  <span class="tech-pill">HTML</span>
+                  <a href="https://github.com/Hongyu06/ExtensionChromeXatReal" target="_blank" rel="noreferrer" class="github-link">
+                    <img src="img/GitHubWhite.png" alt="GitHub" class="github-icon" />
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <h2 class="section-title" data-i18n="contact.title">Contact Me</h2>
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="mailto:hola581303@gmail.com"
+          method="POST"
+          enctype="text/plain"
+        >
+          <div class="form-row">
+            <label for="name" data-i18n="contact.nameLabel">Nombre</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-row">
+            <label for="email" data-i18n="contact.emailLabel">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-row">
+            <label for="message" data-i18n="contact.messageLabel">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="primary-button" data-i18n="contact.send">
+            Enviar
+          </button>
+          <p class="contact-note" data-i18n="contact.note">
+            El formulario abrirá tu cliente de correo para enviar el mensaje.
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
