@@ -124,6 +124,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+  if (themeToggle && themeIcon) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      if (document.body.classList.contains("light-mode")) {
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+      } else {
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      }
+    });
+  }
+
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -178,3 +201,166 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// --- Sistema de Partículas de Fondo ---
+(function() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'particles-canvas';
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100vw';
+  canvas.style.height = '100vh';
+  canvas.style.zIndex = '-1';
+  canvas.style.pointerEvents = 'none';
+  document.body.prepend(canvas);
+
+  const ctx = canvas.getContext('2d');
+  let particlesArray = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+
+  let mouse = {
+    x: null,
+    y: null,
+    radius: 150
+  };
+
+  window.addEventListener('mousemove', function(event) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+  });
+
+  document.documentElement.addEventListener('mouseleave', function() {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  window.addEventListener('resize', function() {
+    resizeCanvas();
+    initParticles();
+  });
+
+  class Particle {
+    constructor(x, y, dx, dy, size, color) {
+      this.x = x;
+      this.y = y;
+      this.dx = dx;
+      this.dy = dy;
+      this.size = size;
+      this.color = color;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+      const isLightMode = document.body.classList.contains("light-mode");
+      ctx.fillStyle = isLightMode ? 'rgba(0, 0, 0, 0.4)' : this.color;
+      ctx.fill();
+    }
+
+    update() {
+      this.x += this.dx;
+      this.y += this.dy;
+
+      // Rebote en los bordes
+      if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+        this.dx = -this.dx;
+      }
+      if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+        this.dy = -this.dy;
+      }
+
+      // Atraer partículas hacia el ratón
+      if (mouse.x != null && mouse.y != null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < mouse.radius) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (mouse.radius - distance) / mouse.radius;
+          const directionX = forceDirectionX * force * 1.5;
+          const directionY = forceDirectionY * force * 1.5;
+          
+          this.x += directionX;
+          this.y += directionY;
+        }
+      }
+
+      this.draw();
+    }
+  }
+
+  function initParticles() {
+    particlesArray = [];
+    let numberOfParticles = Math.floor((canvas.height * canvas.width) / 9000);
+    if (numberOfParticles > 200) numberOfParticles = 200; // Límite para rendimiento
+    
+    for (let i = 0; i < numberOfParticles; i++) {
+      let size = (Math.random() * 2) + 0.5;
+      let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+      let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+      let dx = (Math.random() * 0.6) - 0.3;
+      let dy = (Math.random() * 0.6) - 0.3;
+      let color = 'rgba(255, 255, 255, 0.6)';
+      
+      particlesArray.push(new Particle(x, y, dx, dy, size, color));
+    }
+  }
+
+  function connectParticles() {
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        let dx = particlesArray[a].x - particlesArray[b].x;
+        let dy = particlesArray[a].y - particlesArray[b].y;
+        let distanceSq = dx * dx + dy * dy;
+        
+        if (distanceSq < 10000) {
+          let opacityValue = 1 - (distanceSq / 10000);
+          const isLightMode = document.body.classList.contains("light-mode");
+          ctx.strokeStyle = `rgba(${isLightMode ? '0, 0, 0' : '255, 255, 255'}, ${opacityValue * 0.15})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+          ctx.stroke();
+        }
+      }
+      
+      // Conectar con el ratón atraído con el color temático
+      if (mouse.x != null && mouse.y != null) {
+        let dx = particlesArray[a].x - mouse.x;
+        let dy = particlesArray[a].y - mouse.y;
+        let distanceSq = dx * dx + dy * dy;
+        
+        if (distanceSq < 20000) {
+          let opacityValue = 1 - (distanceSq / 20000);
+          ctx.strokeStyle = `rgba(255, 48, 64, ${opacityValue * 0.6})`; // #ff3040 que se usa en main theme
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animateParticles() {
+    requestAnimationFrame(animateParticles);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update();
+    }
+    connectParticles();
+  }
+
+  initParticles();
+  animateParticles();
+})();

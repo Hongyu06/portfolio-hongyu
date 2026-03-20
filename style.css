@@ -634,4 +634,129 @@ main {
     opacity: 1;
   }
   
+/* LIGHT MODE OVERRIDES */
+body.light-mode {
+  color: #1a1a1a;
+  background: radial-gradient(circle at top, #ffebf0 0%, #f4f4f9 45%, #ffffff 100%);
+}
+body.light-mode .top-bar {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+}
+body.light-mode .navbar {
+  background: radial-gradient(circle at top, #ffffff, #f0f0f0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+body.light-mode .brand {
+  background: #f0f0f0;
+  color: #1a1a1a;
+}
+body.light-mode .lang-select {
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+}
+body.light-mode .theme-toggle {
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.22);
+}
+body.light-mode .nav-link {
+  color: #4a4a4a;
+}
+body.light-mode .nav-link.active {
+  color: #ff3040;
+}
+body.light-mode main {
+  background: radial-gradient(circle at top, rgba(255, 0, 64, 0.05), #ffffff);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .section:not(:last-of-type) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+body.light-mode .about-right h2,
+body.light-mode .about-right p {
+  color: #4a4a4a;
+}
+body.light-mode .avatar-circle {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+body.light-mode .social-icon {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+body.light-mode .skills-field {
+  background: radial-gradient(circle at bottom, rgba(63, 94, 251, 0.05), transparent 70%);
+  border-color: rgba(158, 86, 255, 0.4);
+}
+body.light-mode .project-card-face {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+}
+body.light-mode .project-card-hint {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+body.light-mode .project-card-back p {
+  color: #4a4a4a;
+}
+body.light-mode .project-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  color: #1a1a1a;
+}
+body.light-mode .project-item:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+body.light-mode .project-item.active {
+  background: #ffffff;
+  border-color: #ff3040;
+  box-shadow: 0 0 20px rgba(255, 48, 64, 0.15);
+}
+body.light-mode .tech-pill {
+  background: rgba(0, 0, 0, 0.08);
+  color: #1a1a1a;
+}
+body.light-mode .github-icon {
+  filter: invert(1);
+}
+body.light-mode .form-row input,
+body.light-mode .form-row textarea {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+  color: #1a1a1a;
+}
+body.light-mode .form-row label,
+body.light-mode .contact-note {
+  color: #4a4a4a;
+}
 
+/* Base styles for theme toggle btn */
+.theme-toggle {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f7f7f7;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.6rem;
+  padding: 0;
+}
+.theme-toggle:focus {
+  outline: none;
+  border-color: #ff3040;
+}
+.theme-toggle svg {
+  transition: transform 0.4s ease;
+}
+.theme-toggle:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
