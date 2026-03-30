@@ -168,6 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setActiveProject(item) {
+    if (item.classList.contains("active")) return;
+
     projectItems.forEach((el) => el.classList.remove("active"));
     item.classList.add("active");
 
@@ -175,9 +177,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const description = item.dataset.description;
     const image = item.dataset.image;
 
-    if (projectTitle) projectTitle.textContent = title;
-    if (projectDescription) projectDescription.textContent = description;
-    if (projectImage) projectImage.src = image;
+    if (projectCard) {
+      if (projectCard.classList.contains("flipped")) {
+        projectCard.classList.remove("flipped");
+      }
+      
+      projectCard.classList.add('project-fade');
+      
+      setTimeout(() => {
+        if (projectTitle) projectTitle.textContent = title;
+        if (projectDescription) projectDescription.textContent = description;
+        if (projectImage) projectImage.src = image;
+        
+        projectCard.classList.remove('project-fade');
+      }, 300);
+    } else {
+      if (projectTitle) projectTitle.textContent = title;
+      if (projectDescription) projectDescription.textContent = description;
+      if (projectImage) projectImage.src = image;
+    }
   }
 
   projectItems.forEach((item) => {
@@ -199,6 +217,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+  // --- Scroll Reveal Animation ---
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
 });
 
 // --- Sistema de Partículas de Fondo ---

@@ -1,0 +1,263 @@
+/* ============================================================
+   MEJORAS PREMIUM — MISMOS COLORES, MUCHO MÁS PULIDO
+   ============================================================ */
+
+/* Inter como fuente principal (más moderna) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+/* ── ABOUT ─────────────────────────────────── */
+
+/* Nombre grande con degradado blanco→carmesí */
+.about-right h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff 40%, #ff3040 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Rol en carmesí */
+.about-right h2 {
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: #ff3040 !important;
+  margin-bottom: 1.3rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Avatar: anillo carmesí pulsante */
+.avatar-circle {
+  border-color: rgba(255, 48, 64, 0.5) !important;
+  animation: avatarPulse 3s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
+}
+
+@keyframes avatarPulse {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(255,48,64,0.1), 0 10px 40px rgba(0,0,0,0.85); }
+  50%       { box-shadow: 0 0 0 11px rgba(255,48,64,0.22), 0 0 45px rgba(255,48,64,0.18), 0 10px 40px rgba(0,0,0,0.85); }
+}
+
+.avatar-circle:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 9px rgba(255,48,64,0.28), 0 0 55px rgba(255,48,64,0.38), 0 10px 40px rgba(0,0,0,0.85) !important;
+  animation: none;
+}
+
+/* ── GENERAL ────────────────────────────────── */
+
+/* Títulos de sección con línea carmesí */
+.section-title {
+  position: relative;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  padding-bottom: 0.1rem;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 1.8rem;
+  height: 2px;
+  background: linear-gradient(to right, #ff3040, #ff6a3d);
+  margin: 0.5rem auto 0;
+  border-radius: 999px;
+}
+
+/* Main: borde sutil carmesí */
+main {
+  box-shadow: 0 30px 80px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,48,64,0.08) !important;
+}
+
+/* Navbar brand: glow sutil en hover */
+.brand {
+  transition: box-shadow 0.3s ease;
+}
+.brand:hover {
+  box-shadow: 0 0 20px rgba(255,48,64,0.28);
+}
+
+/* ── SKILLS ─────────────────────────────────── */
+
+.skills-field {
+  box-shadow: 0 0 50px rgba(158,86,255,0.08) inset, 0 20px 60px rgba(0,0,0,0.45);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.skills-field:hover {
+  border-color: rgba(158,86,255,1) !important;
+  box-shadow: 0 0 70px rgba(158,86,255,0.2) inset, 0 20px 60px rgba(0,0,0,0.45);
+}
+
+.skill-bubble {
+  cursor: default;
+  transition: box-shadow 0.3s ease !important;
+}
+
+.skill-bubble:hover {
+  box-shadow: 0 0 30px rgba(255,48,64,0.45), 0 10px 35px rgba(0,0,0,0.85) !important;
+}
+
+/* ── PROJECTS ───────────────────────────────── */
+
+/* Barra lateral carmesí en items */
+.project-item {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              background 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.project-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 0;
+  background: #ff3040;
+  border-radius: 0 4px 4px 0;
+  transition: width 0.22s ease;
+  z-index: 1;
+}
+
+.project-item:hover {
+  transform: translateX(4px) !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.project-item:hover::before { width: 3px; }
+
+.project-item.active {
+  background: rgba(255,48,64,0.05) !important;
+  box-shadow: 0 0 30px rgba(255,48,64,0.35), inset 0 0 20px rgba(255,48,64,0.05) !important;
+}
+
+.project-item.active::before { width: 3px; }
+
+/* Tech pills hover */
+.tech-pill {
+  transition: background 0.2s ease, color 0.2s ease;
+  cursor: default;
+}
+.tech-pill:hover {
+  background: rgba(255,48,64,0.22);
+  color: #ffaaaa;
+}
+
+/* ── BOTÓN PRIMARIO ─────────────────────────── */
+
+.primary-button {
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 0.85rem 2.4rem !important;
+  letter-spacing: 0.15em !important;
+  transition: transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease !important;
+}
+
+/* Brillo diagonal sweep */
+.primary-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.primary-button:hover::after { opacity: 1; }
+
+.primary-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 30px rgba(255,48,64,0.62), 0 14px 40px rgba(0,0,0,0.5) !important;
+  filter: none !important;
+}
+
+.primary-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 10px rgba(255,48,64,0.3) !important;
+}
+
+/* ── CONTACT FORM CARD ─────────────────────── */
+
+.contact-form {
+  background: rgba(255,255,255,0.02) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 24px !important;
+  padding: 2.4rem 2.8rem !important;
+  backdrop-filter: blur(8px);
+  max-width: 560px !important;
+}
+
+.form-row input,
+.form-row textarea {
+  border-radius: 12px !important;
+  padding: 0.78rem 1.05rem !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  box-shadow: 0 0 0 2px rgba(255,48,64,0.32), 0 4px 20px rgba(255,48,64,0.1) !important;
+}
+
+/* ── SCROLL REVEAL ──────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 0.07s; }
+.reveal-d2 { transition-delay: 0.15s; }
+.reveal-d3 { transition-delay: 0.23s; }
+.reveal-d4 { transition-delay: 0.31s; }
+
+/* ── LIGHT MODE OVERRIDES ───────────────────── */
+
+body.light-mode .about-right h1 {
+  background: linear-gradient(135deg, #111111 45%, #ff3040 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.light-mode .contact-form {
+  background: rgba(255,255,255,0.75) !important;
+  border-color: rgba(0,0,0,0.07) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06) !important;
+}
+
+body.light-mode .avatar-circle {
+  animation: none;
+  border-color: rgba(255,48,64,0.35) !important;
+}
+
+/* ── PROJECT SWITCH ANIMATION ───────────────── */
+
+.project-fade {
+  opacity: 0;
+  transform: scale(0.96) translateY(10px);
+}
+
+.project-card {
+  transition: transform 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease !important;
+}
